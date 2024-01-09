@@ -2,6 +2,7 @@ import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -61,6 +62,7 @@ export default function RootLayout({
     })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
   `}
         </Script>
+        <Toaster />
       </body>
     </html>
   );
