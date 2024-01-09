@@ -55,7 +55,7 @@ const Footer = () => {
           </Link>
           <Link
             className="p-1 text-2xl hover:text-rose-500"
-            href="https://www.instagram.com/yun.man.zhu.homestay/"
+            href="https://www.instagram.com/yunmanchu.homestay/"
             title="蘊慢築-IG"
           >
             <FaInstagram />

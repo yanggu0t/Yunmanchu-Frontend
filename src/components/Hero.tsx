@@ -59,7 +59,7 @@ const Hero = ({
           </Link>
           <Link
             className="p-2 text-2xl hover:text-rose-500 md:p-3 md:text-3xl 2xl:p-5 2xl:text-4xl"
-            href="https://www.instagram.com/yun.man.zhu.homestay/"
+            href="https://www.instagram.com/yunmanchu.homestay/"
             title="蘊慢築-IG"
           >
             <BsInstagram />
