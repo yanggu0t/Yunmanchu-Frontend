@@ -89,6 +89,13 @@ html {
       background-image: url("/background-large.webp");
     }
   }
+
+  @layer utilities {
+    .custom-bg-position {
+      background-position: 60% center;
+    }
+  }
+
   .icon-with-text {
     display: inline-flex;
     align-items: center;

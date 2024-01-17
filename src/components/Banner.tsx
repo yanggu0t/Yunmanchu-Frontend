@@ -1,4 +1,5 @@
 import { MegaphoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 import BookingButton from "@/components/modals/BookingButton";
 import { AnnouncementType } from "@/types/announcementTypes";
 
@@ -19,7 +20,12 @@ export default function Banner({
     return null;
 
   return (
-    <div className=" bg-emerald-700">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+      className=" bg-emerald-700"
+    >
       <div className="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex w-0 flex-1 items-center">
@@ -73,6 +79,6 @@ export default function Banner({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

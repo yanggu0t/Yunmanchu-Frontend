@@ -50,12 +50,12 @@ function classNames(...classes: any) {
 
 export default function About() {
   return (
-    <div className="bg-slate-50">
-      <main>
+    <>
+      <div id="about" className="bg-slate-50">
         {/* Featured section */}
-        <section id="about">
+        <section>
           <div className="relative bg-gray-800 px-6 py-32 sm:px-12 sm:py-60 lg:px-16">
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0">
               <Image
                 fill
                 loading="lazy"
@@ -292,7 +292,7 @@ export default function About() {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

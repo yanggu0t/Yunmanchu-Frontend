@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useAnnouncementStore } from "@/store/AnnouncementStore";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Banner from "@/components/Banner";
@@ -12,7 +13,7 @@ const Header = () => {
   // 決定 banner 是否顯示
   const handleOnClose = () => setBannerVisible(false);
   // fetch announcement data，並決定 banner 是否顯示，預設為顯示
-  const [bannerVisible, setBannerVisible] = useState<boolean>(true);
+  const [bannerVisible, setBannerVisible] = useState<boolean>(false);
 
   const setAnnouncements = useAnnouncementStore(
     (state) => state.setAnnouncements,
@@ -24,19 +25,11 @@ const Header = () => {
     setAnnouncements();
   }, [setAnnouncements]);
 
-  // announcements.visible 只負責初始化，後續 bannerVisible 會由 Banner 組件的 OnClose 決定是否顯示
-  // 若 bannerVisible 為 false 不顯示，反之
-  useEffect(() => {
-    if (!bannerVisible) {
-      setBannerVisible(false);
-    } else {
+  useLayoutEffect(() => {
+    if (announcements[0]?.visible) {
       setBannerVisible(true);
     }
-  }, [bannerVisible]);
-
-  const handleNav = () => {
-    setNav(!nav);
-  };
+  }, [announcements]);
 
   //網頁下滑後改變 nav 的背景顏色及字體顏色
   useEffect(() => {
@@ -52,13 +45,24 @@ const Header = () => {
     window.addEventListener("scroll", changeColor);
   }, []);
 
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
   return (
-    <header id="top" className="">
+    <motion.header
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+      id="top"
+      className=""
+    >
       <div
         style={{ backgroundColor: `${color}` }}
         className="fixed left-0 top-0 z-10 w-full duration-300 ease-in"
       >
         <div>
+          {/* 引入 Banner 由 visible 和 OnClose 決定組件是否能被看見 */}
           <Banner
             isLoading={isLoading}
             OnClose={handleOnClose}
@@ -66,7 +70,6 @@ const Header = () => {
             announcements={announcements}
           />
         </div>
-        {/* 引入 Banner 由 visible 和 OnClose 決定組件是否能被看見 */}
 
         <div className="m-auto flex max-w-[1280px] items-center justify-between p-4 text-white">
           <a href="/#top">
@@ -167,7 +170,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
