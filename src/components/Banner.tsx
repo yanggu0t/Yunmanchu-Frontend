@@ -11,7 +11,7 @@ export default function Banner({
   isLoading: boolean;
   visible: boolean;
   OnClose: () => void; // 接管了 header 組件的 bannerVisible 用於在此關閉 banner
-  announcements: AnnouncementType[]; // content 是 header 組件 props 過來的公告內容
+  announcements: AnnouncementType[]; // announcements 是 header 組件 props 過來的公告內容
 }) {
   // 當 visible 為 false 不顯示組件
   if (!visible) return null;
