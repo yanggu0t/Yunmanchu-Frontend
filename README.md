@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [蘊慢築民宿網站](http://yunmanchu.com "蘊慢築民宿網站")
 
-## Getting Started
+### 這個網站是幫蘊慢築民宿建構的，前端使用以下的技術，後端搭配 Express.js 和 MongoDB 來儲存網頁內的公告內容，以及 LINE Messaging Api，讓業主可以用LINE來完成更新公告的操作。
 
-First, run the development server:
+#### 前端使用到的技術 [Next.js 14](https://nextjs.org/ "Next.js 14") 、[Tailwind CSS](https://tailwindcss.com/ "Tailwind CSS") 、[Framer-motion](https://www.framer.com/motion/ "Framer-motion") 、[shadcn/ui](https://ui.shadcn.com/ "shadcn/ui")
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#### 後端使用到的技術 [Express.js](https://expressjs.com/zh-tw/ "Express.js") 、 [MongoDB](https://www.mongodb.com/) 、[LINE Messaging API](https://developers.line.biz/en/services/messaging-api/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##如何開啟專案
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    git clone https://github.com/Gu0tea1031/Yunmanchu-Frontend
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    pnpm install
 
-## Learn More
+    pnpm dev
 
-To learn more about Next.js, take a look at the following resources:
+### LINE 實際操作截圖
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![實際操作截圖](https://i.imgur.com/i9t4IEO.png "實際操作截圖")](https://i.imgur.com/i9t4IEO.png "實際操作截圖")
