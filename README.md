@@ -6,7 +6,7 @@
 
 #### 後端使用到的技術 [Express.js](https://expressjs.com/zh-tw/ "Express.js") 、 [MongoDB](https://www.mongodb.com/) 、[LINE Messaging API](https://developers.line.biz/en/services/messaging-api/)
 
-##如何開啟專案
+### 如何開啟專案
 
     git clone https://github.com/Gu0tea1031/Yunmanchu-Frontend
 
