@@ -8,11 +8,13 @@ export default function Banner({
   visible,
   OnClose,
   announcements,
+  animateDelay,
 }: {
   isLoading: boolean;
   visible: boolean;
   OnClose: () => void; // 接管了 header 組件的 bannerVisible 用於在此關閉 banner
   announcements: AnnouncementType[]; // announcements 是 header 組件 props 過來的公告內容
+  animateDelay: number; // animateDelay 從 header 組件 props 過來的動畫延遲
 }) {
   // 當 visible 為 false 不顯示組件
   if (!visible) return null;
@@ -23,7 +25,7 @@ export default function Banner({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
+      transition={{ ease: "easeInOut", duration: 0.75, delay: animateDelay }}
       className=" bg-emerald-700"
     >
       <div className="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">

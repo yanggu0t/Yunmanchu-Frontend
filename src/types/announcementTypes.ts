@@ -8,5 +8,6 @@ export interface AnnouncementType {
 export interface AnnouncementStore {
   announcements: AnnouncementType[];
   isLoading: boolean;
+  animateDelay: number;
   setAnnouncements: (announcements?: AnnouncementType[]) => void;
 }

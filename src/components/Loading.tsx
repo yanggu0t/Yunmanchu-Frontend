@@ -1,6 +1,7 @@
 "use client";
 
 import { useAnnouncementStore } from "@/store/AnnouncementStore";
+import { backOut, circOut, easeOut, motion } from "framer-motion";
 
 const CutoutTextLoader = ({
   height,
@@ -13,7 +14,7 @@ const CutoutTextLoader = ({
 }) => {
   return (
     <div
-      className="relative z-10"
+      className="relative z-0"
       style={{
         height,
       }}
@@ -47,14 +48,21 @@ const CutoutTextLoader = ({
 const Loading = () => {
   const isLoading = useAnnouncementStore((state) => state.isLoading);
   return (
-    <div className={`${isLoading ? "" : "hidden"}`}>
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isLoading ? 1 : 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`absolute bottom-0 left-0 right-0 top-0 ${
+        isLoading ? "z-[3]" : "z-0"
+      }`}
+    >
       <CutoutTextLoader
         height="100vh"
         background="white"
         // NOTE: Using GIFs for the background looks super cool :)
         imgUrl="/preview.jpeg"
       />
-    </div>
+    </motion.div>
   );
 };
 

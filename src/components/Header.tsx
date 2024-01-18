@@ -20,6 +20,7 @@ const Header = () => {
   );
   const announcements = useAnnouncementStore((state) => state.announcements);
   const isLoading = useAnnouncementStore((state) => state.isLoading);
+  const animateDelay = useAnnouncementStore((state) => state.animateDelay);
 
   useEffect(() => {
     setAnnouncements();
@@ -53,7 +54,7 @@ const Header = () => {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
+      transition={{ ease: "easeInOut", duration: 0.75, delay: animateDelay }}
       id="top"
       className=""
     >
@@ -68,6 +69,7 @@ const Header = () => {
             OnClose={handleOnClose}
             visible={bannerVisible}
             announcements={announcements}
+            animateDelay={animateDelay}
           />
         </div>
 

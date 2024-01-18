@@ -12,6 +12,7 @@ import {
 import { FiMapPin } from "react-icons/fi";
 import Header from "@/components/Header";
 import BookingButton from "@/components/modals/BookingButton";
+import { useAnnouncementStore } from "@/store/AnnouncementStore";
 
 const Hero = ({
   heading,
@@ -26,14 +27,16 @@ const Hero = ({
   message_3: string;
   message_4: string;
 }) => {
+  const animateDelay = useAnnouncementStore((state) => state.animateDelay);
+
   return (
     <>
       <Header />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "easeInOut", duration: 1 }}
-        className="custom-img flex h-screen items-center justify-center bg-cover bg-center"
+        transition={{ ease: "easeInOut", duration: 1, delay: animateDelay }}
+        className="custom-img z-10 flex h-screen items-center justify-center bg-cover bg-center"
       >
         <div className="absolute bottom-0 left-0 right-0 top-0 z-[2] bg-black/50" />
         <div className="min-h-[650px]:mt-[-7rem] z-[2] p-5 text-white md:mt-[3rem]">
