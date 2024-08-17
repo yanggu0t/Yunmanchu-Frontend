@@ -1,10 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Image_Haijinsha from "./Image_Haijinsha";
-import Image_Bitongshu from "./Image_Bitongshu";
-import Image_Tujiaojue from "./Image_Tujiaojue";
-import Image_Public from "./Image_Public";
 import { useState } from "react";
 import ShowMyImg_1 from "./ShowMyImg";
 import ShowMyImg_2 from "./ShowMyImg";
@@ -138,102 +134,74 @@ const Public = [
   },
 ];
 
-const Rooms = ({
-  slides_1,
-  slides_2,
-  slides_3,
-  slides_4,
-}: {
-  slides_1: any;
-  slides_2: any;
-  slides_3: any;
-  slides_4: any;
-}) => {
-  /* Slider and ShowImg component _1 */
-  /* current 是當前照片編號 length 是照片陣列長度 */
-  const [current_1, setCurrent_1] = useState(0);
-  const length_1 = slides_1.length;
+const Rooms = () => {
+  const [current, setCurrent] = useState(0);
+  const [showImg, setShowImg] = useState(false);
+  const createSliderState = (length: number) => {
+    const nextSlide = () => {
+      setCurrent(current === length - 1 ? 0 : current + 1);
+    };
 
-  /* NextSlide 和 PrevSlide 用 current 和 length 判斷前一張與後一張 */
-  const nextSlide_1 = () => {
-    setCurrent_1(current_1 === length_1 - 1 ? 0 : current_1 + 1);
+    const prevSlide = () => {
+      setCurrent(current === 0 ? length - 1 : current - 1);
+    };
+
+    const handleOnClose = () => setShowImg(false);
+
+    return {
+      current,
+      setCurrent,
+      showImg,
+      setShowImg,
+      nextSlide,
+      prevSlide,
+      handleOnClose,
+    };
   };
 
-  const prevSlide_1 = () => {
-    setCurrent_1(current_1 === 0 ? length_1 - 1 : current_1 - 1);
-  };
+  const slider1 = createSliderState(Image_Bitongshu.length);
+  const slider2 = createSliderState(Image_Haijinsha.length);
+  const slider3 = createSliderState(Image_Tujiaojue.length);
+  const slider4 = createSliderState(Image_Public.length);
 
-  /* ShowImg 組件中 預設為未點開狀態 handleOnClose 則可控制照片開關狀態 */
-  const [showImg_1, setShowImg_1] = useState(false);
-  const handleOnClose_1 = () => setShowImg_1(false);
+  const renderImageGrid = (
+    images: string[],
+    slider: ReturnType<typeof createSliderState>,
+    ShowMyImg: React.ComponentType<any>,
+  ) => (
+    <div className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-6 lg:gap-8">
+      {images.map((item, idx) => (
+        <div key={idx} className="">
+          <Image
+            className="rounded-lg bg-gray-100 duration-150 hover:scale-105"
+            onClick={() => {
+              slider.setCurrent(idx);
+              slider.setShowImg(true);
+            }}
+            src={item}
+            loading="lazy"
+            height={400}
+            width={300}
+            alt="房間圖片"
+          />
+        </div>
+      ))}
+    </div>
+  );
 
-  /* Slider and ShowImg component _2 */
-  /* current 是當前照片編號 length 是照片陣列長度 */
-  const [current_2, setCurrent_2] = useState(0);
-  const length_2 = slides_2.length;
-
-  /* NextSlide 和 PrevSlide 用 current 和 length 判斷前一張與後一張 */
-  const nextSlide_2 = () => {
-    setCurrent_2(current_2 === length_2 - 1 ? 0 : current_2 + 1);
-  };
-
-  const prevSlide_2 = () => {
-    setCurrent_2(current_2 === 0 ? length_2 - 1 : current_2 - 1);
-  };
-
-  /* ShowImg 組件中 預設為未點開狀態 handleOnClose 則可控制照片開關狀態 */
-  const [showImg_2, setShowImg_2] = useState(false);
-  const handleOnClose_2 = () => setShowImg_2(false);
-
-  /* Slider and ShowImg component _3 */
-  /* current 是當前照片編號 length 是照片陣列長度 */
-  const [current_3, setCurrent_3] = useState(0);
-  const length_3 = slides_3.length;
-
-  /* NextSlide 和 PrevSlide 用 current 和 length 判斷前一張與後一張 */
-  const nextSlide_3 = () => {
-    setCurrent_3(current_3 === length_3 - 1 ? 0 : current_3 + 1);
-  };
-
-  const prevSlide_3 = () => {
-    setCurrent_3(current_3 === 0 ? length_3 - 1 : current_3 - 1);
-  };
-
-  /* ShowImg 組件中 預設為未點開狀態 handleOnClose 則可控制照片開關狀態 */
-  const [showImg_3, setShowImg_3] = useState(false);
-  const handleOnClose_3 = () => setShowImg_3(false);
-
-  /* Slider and ShowImg component _4 */
-  /* current 是當前照片編號 length 是照片陣列長度 */
-
-  const [current_4, setCurrent_4] = useState(0);
-  const length_4 = slides_4.length;
-
-  /* NextSlide 和 PrevSlide 用 current 和 length 判斷前一張與後一張 */
-  const nextSlide_4 = () => {
-    setCurrent_4(current_4 === length_4 - 1 ? 0 : current_4 + 1);
-  };
-
-  const prevSlide_4 = () => {
-    setCurrent_4(current_4 === 0 ? length_4 - 1 : current_4 - 1);
-  };
-
-  /* ShowImg 組件中 預設為未點開狀態 handleOnClose 則可控制照片開關狀態 */
-  const [showImg_4, setShowImg_4] = useState(false);
-  const handleOnClose_4 = () => setShowImg_4(false);
-
-  if (!Array.isArray(slides_1) || slides_1.length <= 0) {
+  if (
+    !Array.isArray(Image_Bitongshu) ||
+    Image_Bitongshu.length <= 0 ||
+    !Array.isArray(Image_Haijinsha) ||
+    Image_Haijinsha.length <= 0 ||
+    !Array.isArray(Image_Tujiaojue) ||
+    Image_Tujiaojue.length <= 0 ||
+    !Array.isArray(Image_Public) ||
+    Image_Public.length <= 0
+  ) {
     return null;
   }
-  if (!Array.isArray(slides_2) || slides_2.length <= 0) {
-    return null;
-  }
-  if (!Array.isArray(slides_3) || slides_3.length <= 0) {
-    return null;
-  }
-  if (!Array.isArray(slides_4) || slides_4.length <= 0) {
-    return null;
-  }
+
   return (
     <div className="bg-white">
       <section
@@ -261,34 +229,7 @@ const Rooms = ({
             ))}
           </dl>
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-6 lg:gap-8">
-          {Image_Bitongshu.map((slide_1, index_1) => (
-            <div key={index_1} className="">
-              <Image
-                className="rounded-lg bg-gray-100 duration-150 hover:scale-105"
-                onClick={() => {
-                  setCurrent_1(index_1);
-                  setShowImg_1(true);
-                }}
-                key={index_1}
-                src={slide_1.image}
-                loading="lazy"
-                height={400}
-                width={300}
-                alt="Bitongshu.image"
-              />
-              {index_1 === current_1 && (
-                <ShowMyImg_1
-                  onClose={handleOnClose_1}
-                  visible={showImg_1}
-                  img_src={slide_1.image}
-                  prevSlide={prevSlide_1}
-                  nextSlide={nextSlide_1}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        {renderImageGrid(Image_Bitongshu, slider1, ShowMyImg_1)}
       </section>
       <section
         id="Haijinsha"
@@ -315,34 +256,7 @@ const Rooms = ({
             ))}
           </dl>
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-6 lg:gap-8">
-          {Image_Haijinsha.map((slide_2, index_2) => (
-            <div key={index_2} className="">
-              <Image
-                className="rounded-lg bg-gray-100 duration-150 hover:scale-105"
-                onClick={() => {
-                  setCurrent_2(index_2);
-                  setShowImg_2(true);
-                }}
-                key={index_2}
-                src={slide_2.image}
-                loading="lazy"
-                height={400}
-                width={300}
-                alt="Haijinsha.image"
-              />
-              {index_2 === current_2 && (
-                <ShowMyImg_2
-                  onClose={handleOnClose_2}
-                  visible={showImg_2}
-                  img_src={slide_2.image}
-                  prevSlide={prevSlide_2}
-                  nextSlide={nextSlide_2}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        {renderImageGrid(Image_Haijinsha, slider2, ShowMyImg_2)}
       </section>
       <section
         id="Tujiaojue"
@@ -369,34 +283,7 @@ const Rooms = ({
             ))}
           </dl>
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-6 lg:gap-8">
-          {Image_Tujiaojue.map((slide_3, index_3) => (
-            <div key={index_3} className="">
-              <Image
-                className="rounded-lg bg-gray-100 duration-150 hover:scale-105"
-                onClick={() => {
-                  setCurrent_3(index_3);
-                  setShowImg_3(true);
-                }}
-                key={index_3}
-                src={slide_3.image}
-                loading="lazy"
-                height={400}
-                width={300}
-                alt="Tujiaojue.image"
-              />
-              {index_3 === current_3 && (
-                <ShowMyImg_3
-                  onClose={handleOnClose_3}
-                  visible={showImg_3}
-                  img_src={slide_3.image}
-                  prevSlide={prevSlide_3}
-                  nextSlide={nextSlide_3}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        {renderImageGrid(Image_Tujiaojue, slider3, ShowMyImg_3)}
       </section>
       <section className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
         <div>
@@ -405,8 +292,6 @@ const Rooms = ({
           </h2>
           <p className="rooms-content mt-4 text-lg leading-7 text-gray-500">
             民宿內外有寬敞的公共空間，可享用早餐、品茗、體驗生活美學，周遭種植豐富的蕨類、多肉植物、積水鳳梨等各種植物，值得慢慢認識與欣賞。四處走逛，體驗悠閒的生活步調。
-            {/* 民宿內外有寬敞的公共空間，可享用早餐、品茗、體驗生活美學，周遭種植豐富的蕨類、多肉植物、積水鳳梨等各種植物，值得慢慢認識與欣賞。來到鄉間田野，不妨利用我們所提供的腳踏車，四處走逛，體驗悠閒的生活步調。 */}
-            {/* 民宿內除了下面提到的配備以外，民宿周遭種有綠植、多肉植物可以欣賞，到了鄉間田野，不妨也利用我們提供的腳踏車，看看附近的風景，體驗我們的生活步調，與城市的不同，有空可以來這邊走走！ */}
           </p>
 
           <dl className="mt-9 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:gap-x-8">
@@ -422,37 +307,69 @@ const Rooms = ({
             ))}
           </dl>
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-6 lg:gap-8">
-          {Image_Public.map((slide_4, index_4) => (
-            <div key={index_4} className="">
-              <Image
-                className="rounded-lg bg-gray-100 duration-150 hover:scale-105"
-                onClick={() => {
-                  setCurrent_4(index_4);
-                  setShowImg_4(true);
-                }}
-                key={index_4}
-                src={slide_4.image}
-                loading="lazy"
-                height={400}
-                width={300}
-                alt="public.image"
-              />
-              {index_4 === current_4 && (
-                <ShowMyImg_4
-                  onClose={handleOnClose_4}
-                  visible={showImg_4}
-                  img_src={slide_4.image}
-                  prevSlide={prevSlide_4}
-                  nextSlide={nextSlide_4}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        {renderImageGrid(Image_Public, slider4, ShowMyImg_4)}
       </section>
     </div>
   );
 };
 
 export default Rooms;
+
+const Image_Public = [
+  "/Image_Public_Webp/_AJC5714.webp",
+  "/Image_Public_Webp/_AJC5766.webp",
+  "/Image_Public_Webp/_AJC5793.webp",
+  "/Image_Public_Webp/_AJC5798.webp",
+  "/Image_Public_Webp/_AJC5815.webp",
+  "/Image_Public_Webp/_AJC5863.webp",
+  "/Image_Public_Webp/_AJC6186.webp",
+  "/Image_Public_Webp/_AJC6221.webp",
+  "/Image_Public_Webp/_ANJ3985.webp",
+  "/Image_Public_Webp/_AJC6117.webp",
+  "/Image_Public_Webp/_AJC5925.webp",
+  "/Image_Public_Webp/_AJC5936.webp",
+  "/Image_Public_Webp/_AJC5929.webp",
+  "/Image_Public_Webp/_AJC5930.webp",
+  "/Image_Public_Webp/_AJC5931.webp",
+];
+
+const Image_Tujiaojue = [
+  "/Image_Tujiaojue_Webp/_AJC5432.webp",
+  "/Image_Tujiaojue_Webp/_AJC5434.webp",
+  "/Image_Tujiaojue_Webp/_AJC5466.webp",
+  "/Image_Tujiaojue_Webp/R0001076.webp",
+  "/Image_Tujiaojue_Webp/R0001083.webp",
+  "/Image_Tujiaojue_Webp/R0001289.webp",
+  "/Image_Tujiaojue_Webp/R0001295.webp",
+  "/Image_Tujiaojue_Webp/_AJC5492.webp",
+  "/Image_Tujiaojue_Webp/_AJC5511.webp",
+  "/Image_Tujiaojue_Webp/_ANJ3841.webp",
+  "/Image_Tujiaojue_Webp/_ANJ3838.webp",
+  "/Image_Tujiaojue_Webp/_ANJ3821.webp",
+];
+
+const Image_Haijinsha = [
+  "/Image_Haijinsha_Webp/R0001263.webp",
+  "/Image_Haijinsha_Webp/R0001115.webp",
+  "/Image_Haijinsha_Webp/R0001268.webp",
+  "/Image_Haijinsha_Webp/_AJC5522.webp",
+  "/Image_Haijinsha_Webp/_AJC5578.webp",
+  "/Image_Haijinsha_Webp/_AJC5563.webp",
+  "/Image_Haijinsha_Webp/_ANJ3863.webp",
+  "/Image_Haijinsha_Webp/_ANJ3870.webp",
+];
+
+const Image_Bitongshu = [
+  "/Image_Bitongshu_Webp/_ANJ3905.webp",
+  "/Image_Bitongshu_Webp/R0001176.webp",
+  "/Image_Bitongshu_Webp/R0001159.webp",
+  "/Image_Bitongshu_Webp/R0001168.webp",
+  "/Image_Bitongshu_Webp/_AJC5593.webp",
+  "/Image_Bitongshu_Webp/_ANJ3930.webp",
+  "/Image_Bitongshu_Webp/_AJC5631.webp",
+  "/Image_Bitongshu_Webp/_ANJ3907.webp",
+  "/Image_Bitongshu_Webp/_ANJ3910.webp",
+  "/Image_Bitongshu_Webp/_AJC5673.webp",
+  "/Image_Bitongshu_Webp/_AJC5640.webp",
+  "/Image_Bitongshu_Webp/_AJC5648.webp",
+];

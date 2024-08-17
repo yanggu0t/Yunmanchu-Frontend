@@ -6,7 +6,7 @@ const rooms = [
     name: "海金沙房",
     desc: "寬敞的浴室空間和床架適合長者",
     href: "/rooms#Haijinsha",
-    imageSrc: "/Image_Haijinsha_Webp/_ANJ3883.webp",
+    imageSrc: "/Image_Haijinsha_Webp/R0001263.webp",
     imageAlt: "海金沙房",
   },
   {
@@ -14,7 +14,7 @@ const rooms = [
     name: "兔角蕨房",
     desc: "寬敞的房間和採光充足明亮舒適的浴室",
     href: "/rooms#Tujiaojue",
-    imageSrc: "/Image_Tujiaojue_Webp/_ANJ3847.webp",
+    imageSrc: "/Image_Tujiaojue_Webp/R0001087.webp",
     imageAlt: "兔角蕨房",
   },
   {
@@ -22,7 +22,7 @@ const rooms = [
     name: "筆筒樹房",
     desc: "寬敞的空間獨享露台和一個小茶几",
     href: "/rooms#Bitongshu",
-    imageSrc: "/Image_Bitongshu_Webp/_ANJ3931.webp",
+    imageSrc: "/Image_Bitongshu_Webp/R0001159.webp",
     imageAlt: "筆筒樹房",
   },
 ];
@@ -242,16 +242,16 @@ export default function About() {
                             alt="蘊慢築民宿-早餐"
                           />
                         </div>
-
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
                             src="/Image_Food_Webp/_AJC5929.webp"
                             alt="蘊慢築民宿-早餐"
-                          />
-                        </div>
-                      </div>
+                          />{" "}
+                        </div>{" "}
+                      </div>{" "}
                       <div className="flex space-x-6 sm:-mt-20 sm:flex-col sm:space-x-0 sm:space-y-6 lg:space-y-8">
+                        {" "}
                         <div className="flex-shrink-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
@@ -259,7 +259,6 @@ export default function About() {
                             alt="蘊慢築民宿-早餐"
                           />
                         </div>
-
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"

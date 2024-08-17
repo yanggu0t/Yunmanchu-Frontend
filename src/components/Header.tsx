@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useAnnouncementStore } from "@/store/AnnouncementStore";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Banner from "@/components/Banner";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -50,14 +51,10 @@ const Header = () => {
     setNav(!nav);
   };
 
+  const router = useRouter();
+
   return (
-    <motion.header
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75, delay: animateDelay }}
-      id="top"
-      className=""
-    >
+    <motion.header id="top">
       <div
         style={{ backgroundColor: `${color}` }}
         className="fixed left-0 top-0 z-10 w-full duration-300 ease-in"
@@ -69,12 +66,11 @@ const Header = () => {
             OnClose={handleOnClose}
             visible={bannerVisible}
             announcements={announcements}
-            animateDelay={animateDelay}
           />
         </div>
 
         <div className="m-auto flex max-w-[1280px] items-center justify-between p-4 text-white">
-          <a href="/#top">
+          <div onClick={() => router.push("/#top")} className="cursor-pointer">
             <h1
               style={{ color: `${textColor}` }}
               className={`jf-datk6 text-4xl font-bold duration-300 hover:scale-110`}
@@ -82,32 +78,52 @@ const Header = () => {
             >
               蘊慢築
             </h1>
-          </a>
+          </div>
           <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
             <li className="p-4 text-xl font-semibold duration-300 hover:scale-110">
-              <a href="/#about" title="關於我們">
+              <div
+                onClick={() => router.push("/#about")}
+                className="cursor-pointer"
+                title="關於我們"
+              >
                 關於我們
-              </a>
+              </div>
             </li>
             <li className="p-4 text-xl font-semibold duration-300 hover:scale-110">
-              <a href="/accommodation-info" title="住宿資訊">
+              <div
+                onClick={() => router.push("/accommodation-info")}
+                className="cursor-pointer"
+                title="住宿資訊"
+              >
                 住宿資訊
-              </a>
+              </div>
             </li>
             <li className="p-4 text-xl font-semibold duration-300 hover:scale-110">
-              <a href="/rooms" title="房型介紹">
+              <div
+                onClick={() => router.push("/rooms")}
+                className="cursor-pointer"
+                title="房型介紹"
+              >
                 房型介紹
-              </a>
+              </div>
             </li>
             <li className="p-4 text-xl font-semibold duration-300 hover:scale-110">
-              <a href="/traffic-info" title="交通資訊">
+              <div
+                onClick={() => router.push("/traffic-info")}
+                className="cursor-pointer"
+                title="交通資訊"
+              >
                 交通資訊
-              </a>
+              </div>
             </li>
             <li className="p-4 text-xl font-semibold duration-300 hover:scale-110">
-              <a href="/booking-info" title="訂房須知">
+              <div
+                onClick={() => router.push("/booking-info")}
+                className="cursor-pointer"
+                title="訂房須知"
+              >
                 訂房須知
-              </a>
+              </div>
             </li>
           </ul>
 
@@ -129,44 +145,49 @@ const Header = () => {
           >
             <ul>
               <li
-                onClick={handleNav}
-                className="p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
+                onClick={() => {
+                  handleNav();
+                  router.push("/#about");
+                }}
+                className="cursor-pointer p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
               >
-                <a href="/#about" title="關於我們">
-                  關於我們
-                </a>
+                關於我們
               </li>
               <li
-                onClick={handleNav}
-                className="p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
+                onClick={() => {
+                  handleNav();
+                  router.push("/accommodation-info");
+                }}
+                className="cursor-pointer p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
               >
-                <a href="/accommodation-info" title="住宿資訊">
-                  住宿資訊
-                </a>
+                住宿資訊
               </li>
               <li
-                onClick={handleNav}
-                className="p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
+                onClick={() => {
+                  handleNav();
+                  router.push("/rooms");
+                }}
+                className="cursor-pointer p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
               >
-                <a href="/rooms" title="房型介紹">
-                  房型介紹
-                </a>
+                房型介紹
               </li>
               <li
-                onClick={handleNav}
-                className="p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
+                onClick={() => {
+                  handleNav();
+                  router.push("/traffic-info");
+                }}
+                className="cursor-pointer p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
               >
-                <a href="/traffic-info" title="交通資訊">
-                  交通資訊
-                </a>
+                交通資訊
               </li>
               <li
-                onClick={handleNav}
-                className="p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
+                onClick={() => {
+                  handleNav();
+                  router.push("/booking-info");
+                }}
+                className="cursor-pointer p-4 text-3xl font-semibold duration-300 hover:text-gray-400"
               >
-                <a href="/booking-info" title="訂房須知">
-                  訂房須知
-                </a>
+                訂房須知
               </li>
             </ul>
           </div>

@@ -12,17 +12,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW">
-      {/* 奧特曼行銷追蹤代碼 */}
-      {/* <Script type="text/javascript">
-        {`
-          var s=document.createElement('script');s.async=1;
-          s.src='https://api.popin.tw/pixel.php?aid=tXPynn6M7g&t='+Date.now(); var
-          t=document.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);
-        `}
-      </Script> */}
-
-      <ScrollbarController>
-        <Loading />
+      <body>
+        {/* <Loading /> */}
         {children}
         <Footer />
         <Toaster />
@@ -64,7 +55,7 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
           `}
         </Script>
-      </ScrollbarController>
+      </body>
     </html>
   );
 }

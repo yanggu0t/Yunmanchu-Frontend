@@ -25,58 +25,42 @@ const BookingButton = ({ section }: { section: string }) => {
           <DialogHeader>
             <DialogTitle>你好，請從下方選擇一個訂房管道</DialogTitle>
             <DialogDescription className="pt-1 text-base font-semibold text-slate-500">
-              蘊慢築民宿推薦直接與我們聯繫，可以選擇{" "}
-              <Link
-                className="border-b-2 border-emerald-600 text-emerald-600 "
-                href="https://line.me/ti/p/HDv0iSYPzX"
-              >
-                LINE
-              </Link>{" "}
-              或{" "}
-              <Link
-                className="border-b-2 border-sky-600 text-sky-600"
-                href="tel:+886-910-517-860"
-              >
-                電洽民宿
-              </Link>
-              ，亦或是用{" "}
-              <Link
-                className="border-b-2 border-blue-600 text-blue-600"
-                href="https://www.facebook.com/yun.man.zhu.homestay"
-              >
-                Facebook
-              </Link>{" "}
-              或{" "}
-              <Link
-                className="border-b-2 border-pink-600 text-pink-600"
-                href="https://www.instagram.com/yunmanchu.homestay"
-              >
-                Instagram
-              </Link>{" "}
-              聯絡我們，也可以透過訂房網站來訂房，請點選以下連結前往訂房網站。
-            </DialogDescription>
-            <DialogDescription className="flex items-center justify-center">
-              <Link
-                className="mx-1 my-1 rounded-lg border-2 border-blue-700 p-1 text-blue-700 duration-150 hover:border-blue-400 hover:text-blue-500"
-                title="蘊慢築民宿-Booking"
-                href="https://www.booking.com/hotel/tw/yun-man-zhu.zh-tw.html"
-              >
-                Booking
-              </Link>
-              <Link
-                className="mx-1 my-1 rounded-lg border-2 border-red-500 p-1 text-red-500 duration-150 hover:border-red-400 hover:text-red-400"
-                title="蘊慢築民宿-Agoda"
-                href="https://www.agoda.com/zh-tw/yun-man-zhu-homestay/hotel/all/miaoli-tw.html"
-              >
-                Agoda
-              </Link>
-              <Link
-                className="mx-1 my-1 rounded-lg border-2 border-yellow-500 p-1 text-yellow-500 duration-150 hover:border-yellow-400 hover:text-yellow-400"
-                title="蘊慢築民宿-Traiwan"
-                href="https://site.traiwan.com/yunmanchu/booking.html"
-              >
-                TRAIWAN
-              </Link>
+              <ul className="mt-2 space-y-1">
+                <p> 蘊慢築民宿推薦直接與我們聯繫，您可以選擇以下方式：</p>
+                <li>
+                  <Link
+                    className="border-b-2 border-green-500 text-green-500"
+                    href="https://line.me/ti/p/HDv0iSYPzX"
+                  >
+                    LINE
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="border-b-2 border-blue-600 text-blue-600"
+                    href="https://www.facebook.com/yun.man.zhu.homestay"
+                  >
+                    Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="border-b-2 border-blue-400 text-blue-400"
+                    title="蘊慢築民宿-Booking"
+                    href="https://www.booking.com/hotel/tw/yun-man-zhu.zh-tw.html"
+                  >
+                    Booking
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="border-b-2 border-yellow-500 text-yellow-500"
+                    href="tel:+886-910-517-860"
+                  >
+                    電洽民宿
+                  </Link>
+                </li>
+              </ul>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
