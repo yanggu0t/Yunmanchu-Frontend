@@ -14,11 +14,20 @@ export const useAnnouncementStore = create<AnnouncementStore>((set, get) => ({
 
       try {
         // 從 API 獲取資料
-        const res = await fetch("https://api.yunmanchu.com/announcement");
+        const res = await fetch(process.env.NEXT_PUBLIC_API_URL!);
         const data = await res.json();
 
+        // 將 API 回傳的資料轉換為 AnnouncementType 格式
+        const announcement: AnnouncementType = {
+          id: data.json._id,
+          visible: data.json.visible,
+          announcement: data.json.announcement,
+          updatedAt: data.json.updatedAt,
+        };
+
         // 更新狀態，設置公告並關閉加載標誌
-        set({ announcements: data });
+        set({ announcements: [announcement] });
+
         // 延遲關閉加載標誌以改善用戶體驗
         setTimeout(
           () => {
@@ -36,6 +45,7 @@ export const useAnnouncementStore = create<AnnouncementStore>((set, get) => ({
           updatedAt: new Date().toISOString(), // 當前時間作為更新時間
           visible: false, // 可見性設置為 false
         };
+
         set({ announcements: [errorAnnouncement], isLoading: false });
       }
     }

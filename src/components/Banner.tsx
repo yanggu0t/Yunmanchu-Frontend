@@ -30,14 +30,6 @@ export default function Banner({
                 aria-hidden="true"
               />
             </span>{" "}
-            {isLoading ? (
-              <>
-                <p className="ml-3 font-medium text-white">
-                  <span className="md:hidden">讀取中...</span>
-                  <span className="hidden md:inline">讀取中...</span>
-                </p>
-              </>
-            ) : null}
             {announcements.map(
               (announcements, index) =>
                 announcements && (
